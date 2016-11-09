@@ -1,4 +1,4 @@
-package com.dataxf.tests;
+package com.dataxf.tests.ContextLoaders;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.ProducerTemplate;
@@ -9,13 +9,13 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 
 @RunWith(CamelSpringRunner.class) // aka CamelSpringJUnit4ClassRunner.class
-@ContextConfiguration(locations={"classpath:spring-context.xml"})
-public class MyCamelSpringContextByLocationsTest {
+@ContextConfiguration(classes={MyContextLoader.class})
+public class MyCamelSpringContextByClassesTest {
 
     @EndpointInject(uri="direct:something")
     ProducerTemplate producerTemplate;
 
-    // Already Mocked up in existing spring-context.xml
+    // Already Mocked up in existing context loaded by MyContextLoader.class
     @EndpointInject(uri="mock:somethingMocked")
     MockEndpoint mockEndpoint;
 

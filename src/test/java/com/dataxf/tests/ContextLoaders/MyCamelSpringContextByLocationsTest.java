@@ -1,27 +1,22 @@
-package com.dataxf.tests;
+package com.dataxf.tests.ContextLoaders;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.spring.CamelSpringRunner;
-import org.apache.camel.test.spring.CamelTestContextBootstrapper;
-import org.apache.camel.test.spring.MockEndpoints;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.BootstrapWith;
 import org.springframework.test.context.ContextConfiguration;
 
 @RunWith(CamelSpringRunner.class) // aka CamelSpringJUnit4ClassRunner.class
-@BootstrapWith(CamelTestContextBootstrapper.class)
 @ContextConfiguration(locations={"classpath:spring-context.xml"})
-@MockEndpoints
-public class MyCamelSpringContextByLocationsMockAnnotationTest {
-
+public class MyCamelSpringContextByLocationsTest {
 
     @EndpointInject(uri="direct:something")
     ProducerTemplate producerTemplate;
 
-    @EndpointInject(uri="mock:direct:something")
+    // Already Mocked up in existing spring-context.xml
+    @EndpointInject(uri="mock:somethingMocked")
     MockEndpoint mockEndpoint;
 
     @Test
@@ -31,6 +26,7 @@ public class MyCamelSpringContextByLocationsMockAnnotationTest {
         mockEndpoint.expectedMessageCount(1);
 
         producerTemplate.sendBody("Hello");
+        System.out.println("test executed");
 
         mockEndpoint.assertExchangeReceived(0);
         mockEndpoint.assertIsSatisfied();

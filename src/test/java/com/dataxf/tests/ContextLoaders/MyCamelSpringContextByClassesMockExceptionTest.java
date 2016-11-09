@@ -1,4 +1,4 @@
-package com.dataxf.tests;
+package com.dataxf.tests.ContextLoaders;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.ProducerTemplate;
@@ -6,7 +6,6 @@ import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.spring.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.BootstrapWith;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -16,7 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(classes={MyContextLoader.class})
 @MockEndpoints // only works when spring-context is loaded directly by @ContextConfiguration and @BootstrapWith(CamelTestContextBootstrapper.class)
 public class MyCamelSpringContextByClassesMockExceptionTest {
-
 
     @EndpointInject(uri="direct:something")
     ProducerTemplate producerTemplate;

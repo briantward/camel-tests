@@ -1,4 +1,4 @@
-package com.dataxf.tests;
+package com.dataxf.tests.ContextLoaders;
 
 import org.springframework.context.annotation.ImportResource;
 

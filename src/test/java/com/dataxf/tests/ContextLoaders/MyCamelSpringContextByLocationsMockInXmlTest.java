@@ -1,4 +1,4 @@
-package com.dataxf.tests;
+package com.dataxf.tests.ContextLoaders;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.ProducerTemplate;
@@ -15,7 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 //@BootstrapWith(CamelTestContextBootstrapper.class)  // Can be used but is not needed
 @ContextConfiguration(locations={"classpath:spring-context-with-mock-all.xml"})
 public class MyCamelSpringContextByLocationsMockInXmlTest {
-
 
     @EndpointInject(uri="direct:something")
     ProducerTemplate producerTemplate;
